@@ -1,0 +1,22 @@
+const express =require('express')
+const { default: mongoose } = require('mongoose')
+const app = express()
+
+const archivoDB = require('./conexion')
+
+//importacion de archivo de rutas 
+const rutausuario =require('./rutas/usuario')
+app.use('/api/usuario', rutausuario)
+//importar body parser
+const bodyParser =require('body-parser')
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:'true'}))
+
+app.use('/api/usuario', rutausuario)
+
+app.get('/', (req,res)=>{
+    res.end('Bienvenidos al servidor backend')
+})
+app.listen(5000,function(){
+    console.log('El servidor node esta corriendo')
+})
